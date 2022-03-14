@@ -106,14 +106,16 @@ class GuzzleBundleRetryPlugin extends Bundle implements PluginInterface
             $middleware = new Definition(GuzzleRetryMiddleware::class);
             $middleware->setFactory([GuzzleRetryMiddleware::class, 'factory']);
             $middleware->setArguments([
-                'max_retry_attempts'               => $config['max_retry_attempts'],
-                'retry_only_if_retry_after_header' => $config['retry_only_if_retry_after_header'],
-                'retry_on_status'                  => $config['retry_on_status'],
-                'default_retry_multiplier'         => $config['default_retry_multiplier'],
-                'retry_on_timeout'                 => $config['retry_on_timeout'],
-                'expose_retry_header'              => $config['expose_retry_header'],
-                'retry_header'                     => $config['retry_header'],
-                'on_retry_callback'                => $onRetryCallback,
+                [
+                    'max_retry_attempts'               => $config['max_retry_attempts'],
+                    'retry_only_if_retry_after_header' => $config['retry_only_if_retry_after_header'],
+                    'retry_on_status'                  => $config['retry_on_status'],
+                    'default_retry_multiplier'         => $config['default_retry_multiplier'],
+                    'retry_on_timeout'                 => $config['retry_on_timeout'],
+                    'expose_retry_header'              => $config['expose_retry_header'],
+                    'retry_header'                     => $config['retry_header'],
+                    'on_retry_callback'                => $onRetryCallback,
+                ],
             ]);
 
             $middleware->setPublic(true);
